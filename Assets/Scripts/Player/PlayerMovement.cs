@@ -107,4 +107,14 @@ public class PlayerMovement : MonoBehaviour
         return isGrounded() && !onWall();
     }
 
+    public void ChangeSpeed(int delta)
+    {
+        speed += delta;
+    }
+
+    public void ChangeJump(int delta)
+    {
+        jumpPower += delta;
+    }
+
 }

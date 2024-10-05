@@ -9,11 +9,9 @@ public class Quaker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.GetComponent<Health>())
         {
             collision.GetComponent<Health>().TakeDamage(damage);
-            try { collision.GetComponent<MeleeEnemy>().Root(delay); } catch { }
-            try { collision.GetComponent<RangedEnemy>().Root(delay); } catch { }
         }
     }
 

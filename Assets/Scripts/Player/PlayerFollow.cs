@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerFollow : MonoBehaviour
@@ -10,6 +8,7 @@ public class PlayerFollow : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
+        transform.parent = null;
     }
     // Update is called once per frame
     void Update()

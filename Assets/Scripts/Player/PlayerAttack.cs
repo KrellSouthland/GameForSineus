@@ -6,13 +6,11 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject[] fireballs;
-    [SerializeField] private AudioClip fireballSound;
 
     [SerializeField] private AttackEffect[] attacks;
     [SerializeField] private float attackTimer;
-
-    private bool startAttack;
+    private bool stopCasts;
+    [SerializeField] private bool startAttack;
     [SerializeField] private bool dontAttack;
     [SerializeField] private int currentAttackTick;
     [SerializeField]private List<int> currentAttackList;
@@ -20,8 +18,8 @@ public class PlayerAttack : MonoBehaviour
     private PlayerMovement playerMovement;
     private float cooldownTimer = Mathf.Infinity;
     [SerializeField] private float betweenCoolDown;
-    [SerializeField] private GameObject silent, strong;
-    [SerializeField] private Color scolor, stcolor;
+
+    [SerializeField] private ShowMagic spells;
 
 
     private void Awake()
@@ -32,34 +30,26 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!stopCasts&&!dontAttack)
         {
-            Attack(0);
-            //StartCoroutine(ShowAndFade(silent));
+            if (Input.GetMouseButtonDown(0))
+            {
+                spells.ActivateStage(0,currentAttackTick);
+                Attack(0);
+
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                spells.ActivateStage(1, currentAttackTick);
+                Attack(1);
+
+            }
         }
-        if (Input.GetMouseButtonDown(1))
+        if (dontAttack)
         {
-            Attack(1);
-           // StartCoroutine(ShowAndFade(strong));
+            CheckCast();
         }
- 
-
-        /*if (Input.GetMouseButton(0) && cooldownTimer > attackCooldown && playerMovement.canAttack()
-            && Time.timeScale > 0)
-            Attack();
-
-        cooldownTimer += Time.deltaTime;*/
     }
-
-    /*private void Attack()
-    {
-        SoundManager.instance.PlaySound(fireballSound);
-        anim.SetTrigger("attack");
-        cooldownTimer = 0;
-
-        fireballs[FindFireball()].transform.position = firePoint.position;
-        fireballs[FindFireball()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
-    }*/
     private void Attack(int Comb)
     {
         if (!startAttack)
@@ -67,17 +57,17 @@ public class PlayerAttack : MonoBehaviour
             startAttack = true;
             StartCoroutine(AttackCount());
         }
-        if (!dontAttack)
-        {
-            currentAttackList.Add(Comb);
-            dontAttack = true;
-            StartCoroutine(BetweenAttacks());
-            currentAttackTick++;
-        }
+ 
+        currentAttackList.Add(Comb);
+        dontAttack = true;
+        StartCoroutine(BetweenAttacks());
+        currentAttackTick++;
 
-        if (currentAttackTick == 3)
+
+        if (currentAttackTick >= 3)
         {
-            StopCoroutine(AttackCount());
+            stopCasts = true;
+            StopAllCoroutines();
             CheckWhatAttack();
 
         }
@@ -88,6 +78,7 @@ public class PlayerAttack : MonoBehaviour
         startAttack = false;
         currentAttackTick = 0;
         currentAttackList.Clear();
+        spells.DeactivateStages();
 
     }
 
@@ -95,6 +86,7 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(attackTimer);
         PurifyAttack();
+
     }
     private IEnumerator BetweenAttacks()
     {
@@ -102,17 +94,12 @@ public class PlayerAttack : MonoBehaviour
         dontAttack = false;
 
     }
-    private IEnumerator fadeOut(GameObject fader)
-    {
-        yield return null;
-    }
 
 
     void CheckWhatAttack()
     {
         bool basicAttack = true;
         string combination = null;
-        Debug.Log(combination);
         for (int i = 0; i< currentAttackList.Count; i++)
         {
             combination += currentAttackList[i].ToString();
@@ -120,12 +107,10 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log(combination);
         for (int i = 1;i<attacks.Length;i++)
         {
-            Debug.Log(attacks[i].ReturnCombination(combination));
             if (attacks[i].ReturnCombination(combination))
             {
                 attacks[i].ActivateAttack();
                 basicAttack = false;
-                return;
             }
         }
         if (basicAttack)
@@ -133,15 +118,14 @@ public class PlayerAttack : MonoBehaviour
             attacks[0].ActivateAttack();
         }
         PurifyAttack();
-
-
+        stopCasts = false;
     }
 
-    private IEnumerator ShowAndFade(GameObject fader) 
+    private void CheckCast()
     {
-        fader.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        fader.SetActive(false);
+        if (!spells.cantCast)
+            dontAttack = false;
+
     }
 
 }
