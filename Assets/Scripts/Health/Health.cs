@@ -22,6 +22,9 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
 
+    [Header("Link to bar")]
+    [SerializeField] private GameObject healthbar;
+
     private void Start()
     {
         currentHealth = startingHealth;
@@ -34,6 +37,11 @@ public class Health : MonoBehaviour
         if (!invulnerable)
         {
             currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+
+            if (healthbar != null)
+            {
+                healthbar.GetComponent<EnemyHealthbar>().UpdateHealthbar(currentHealth, startingHealth);
+            }
 
             if (currentHealth > 0)
             {

@@ -56,8 +56,7 @@ public class DialogueSystem : MonoBehaviour
         {
             _textUI = GameObject.Find("NameUI").GetComponent<TextMeshProUGUI>();
         }
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        
     }
      
     public void InitDialogue(string[] _newDialogue, string _character, Sprite _avatar)
@@ -156,13 +155,23 @@ public class DialogueSystem : MonoBehaviour
         UnityEngine.Debug.Log("Switch Color");
         for (int i = 0; i < _leftAlphas.Count; i++)
         {
+            if (i >= _textUI.textInfo.characterInfo.Length)
+                break;
+
             if (_textUI.textInfo.characterInfo[i].character != '\n' &&
                 _textUI.textInfo.characterInfo[i].character != ' ')
             {
                 int meshIndex = _textUI.textInfo.characterInfo[i].materialReferenceIndex;
+
+                if (meshIndex >= _textUI.textInfo.meshInfo.Length)
+                    break;
+
                 int vertexIndex = _textUI.textInfo.characterInfo[i].vertexIndex;
 
                 Color32[] vertexColors = _textUI.textInfo.meshInfo[meshIndex].colors32;
+
+                if (vertexIndex + 3 >= vertexColors.Length)
+                    break;
 
                 vertexColors[vertexIndex + 0].a = (byte)_leftAlphas[i];
                 vertexColors[vertexIndex + 1].a = (byte)_leftAlphas[i];

@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class VolumeText : MonoBehaviour
 {
     [SerializeField] private string volumeName;
     [SerializeField] private string textIntro; //Sound:  or Music:
-    private Text txt;
+    private TMP_Text txt;
 
     private void Awake()
     {
-        txt = GetComponent<Text>();
+        txt = GetComponent<TMP_Text>();
+        UpdateVolume();
     }
     private void Update()
     {
