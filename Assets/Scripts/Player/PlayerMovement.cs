@@ -22,7 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        // ПРОВЕРКА ДИАЛОГА
+        if (!DialogueSystem.isOpen())
+            horizontalInput = Input.GetAxis("Horizontal");
+        else
+            horizontalInput = 0;
 
         // flip player when moving left-right
         if (horizontalInput > 0.01f)
@@ -47,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
             }
             else
                 body.gravityScale = 7;
-
-            if (Input.GetKey(KeyCode.Space))
+            // ПРОВЕРКА ДИАЛОГА
+            if (Input.GetKey(KeyCode.Space) && !DialogueSystem.isOpen())
                 Jump();
         }
         else
@@ -75,12 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
+  
     private bool isGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
@@ -96,6 +95,6 @@ public class PlayerMovement : MonoBehaviour
     public bool canAttack()
     {
         //return horizontalInput == 0 && isGrounded() && !onWall();
-        return isGrounded() && !onWall();
+        return isGrounded() && !onWall() && !DialogueSystem.isOpen();
     }
 }
