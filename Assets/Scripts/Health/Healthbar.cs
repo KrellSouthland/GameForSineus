@@ -7,11 +7,14 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private Image totalhealthBar;
     [SerializeField] private Image currenthealthBar;
 
-    private int maxHp = 100;
+    private float maxHp;// = 100;
 
     private void Start()
     {
-        currenthealthBar.fillAmount = 0; 
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        playerHealth = player.GetComponent<Health>();
+        currenthealthBar.fillAmount = 0;
+        maxHp = playerHealth._maxHp;
         //totalhealthBar.fillAmount = playerHealth.currentHealth / maxHp;
     }
     private void Update()

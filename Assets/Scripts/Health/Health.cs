@@ -25,6 +25,8 @@ public class Health : MonoBehaviour
     [Header("Link to bar")]
     [SerializeField] private GameObject healthbar;
 
+    public float _maxHp => startingHealth;
+
     private void Start()
     {
         currentHealth = startingHealth;

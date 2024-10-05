@@ -265,6 +265,7 @@ MonoBehaviour:
   invulnerable: 0
   deathSound: {fileID: 8300000, guid: dd6d9531e2f11434f9add7e7e09cd332, type: 3}
   hurtSound: {fileID: 8300000, guid: 32ff513695816ae4fb9ecd5c1bc67120, type: 3}
+  healthbar: {fileID: 0}
 --- !u!114 &7685147288356597543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,11 +870,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7828626270535538899, guid: c521a4ce7a105aa48b21bef42c56a685, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.15
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 7828626270535538899, guid: c521a4ce7a105aa48b21bef42c56a685, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 7828626270535538899, guid: c521a4ce7a105aa48b21bef42c56a685, type: 3}
       propertyPath: m_LocalPosition.z
