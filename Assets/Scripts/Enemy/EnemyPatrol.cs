@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
@@ -78,5 +79,18 @@ public class EnemyPatrol : MonoBehaviour
         //Move in that direction
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * speed,
             enemy.position.y, enemy.position.z);
+    }
+
+    public void Root(float seconds)
+    {
+        StartCoroutine(StopMovement(seconds));
+    }
+
+    private IEnumerator StopMovement(float seconds)
+    {
+        float normalSpeed = speed;
+        speed = 0;
+        yield return new WaitForSeconds(seconds);
+        speed = normalSpeed;
     }
 }

@@ -7,6 +7,12 @@ public class Projectile : MonoBehaviour
     private bool hit;
     private float lifetime;
 
+    [SerializeField] private Rigidbody2D rb;
+
+    public int Damage;
+
+    public int slowEffect;
+
     private Animator anim;
     private BoxCollider2D boxCollider;
 
@@ -15,11 +21,17 @@ public class Projectile : MonoBehaviour
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     private void Update()
     {
         if (hit) return;
+        Vector2 Direction = Vector2.right;
         float movementSpeed = speed * Time.deltaTime * direction;
-        transform.Translate(movementSpeed, 0, 0);
+        transform.Translate(Direction*movementSpeed);
 
         lifetime += Time.deltaTime;
         if (lifetime > 5) gameObject.SetActive(false);
@@ -32,7 +44,10 @@ public class Projectile : MonoBehaviour
         anim.SetTrigger("explode");
 
         if (collision.tag == "Enemy")
+        {
             collision.GetComponent<Health>()?.TakeDamage(1);
+            //GetComponent<Health>()?.TakeDamage(Damage)
+        }
     }
     public void SetDirection(float _direction)
     {
@@ -48,8 +63,22 @@ public class Projectile : MonoBehaviour
 
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
     }
+
+    public virtual void Fire()
+    {
+        int turnmodifier = 1;
+        if (FindObjectOfType<PlayerMovement>().turnedLeft)
+        {
+            turnmodifier = -1;
+        }
+        transform.localScale = new Vector2(turnmodifier, transform.localScale.y);
+        rb.AddForce(transform.right*speed*turnmodifier);
+    }
+
+
+
     private void Deactivate()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

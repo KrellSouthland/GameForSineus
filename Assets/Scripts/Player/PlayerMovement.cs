@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
+    public bool turnedLeft {  get; private set; }
 
     private void Awake()
     {
@@ -30,10 +32,16 @@ public class PlayerMovement : MonoBehaviour
 
         // flip player when moving left-right
         if (horizontalInput > 0.01f)
+        {
             transform.localScale = Vector3.one;
+            turnedLeft = false;
+        }
 
         if (horizontalInput < -0.01f)
+        {
             transform.localScale = new Vector3(-1, 1, 1);
+            turnedLeft = true;
+        }
 
         // Set animator parameters
         anim.SetBool("run", horizontalInput != 0);
@@ -97,4 +105,15 @@ public class PlayerMovement : MonoBehaviour
         //return horizontalInput == 0 && isGrounded() && !onWall();
         return isGrounded() && !onWall() && !DialogueSystem.isOpen();
     }
+
+    public void ChangeSpeed(int delta)
+    {
+        speed += delta;
+    }
+
+    public void ChangeJump(int delta)
+    {
+        jumpPower += delta;
+    }
+
 }

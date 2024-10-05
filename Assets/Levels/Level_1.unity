@@ -13071,6 +13071,10 @@ PrefabInstance:
       propertyPath: wallJumpY
       value: 750
       objectReference: {fileID: 0}
+    - target: {fileID: 8285625784893390386, guid: 9acc49d7ce5e1ab45a98f01a135b8b02, type: 3}
+      propertyPath: timerimmortal
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

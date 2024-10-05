@@ -72,4 +72,9 @@ public class MeleeEnemy : MonoBehaviour
             playerHealth.TakeDamage(damage);
         }
     }
+
+    public void Root(float delay)
+    {
+        enemyPatrol.Root(delay);
+    }
 }

@@ -140,7 +140,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.040688068, y: -0.5536228}
@@ -168,11 +168,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e26f534ea637349a0bc6f44b578ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 30
+  currentHealth: 0
   iFramesDuration: 0
   numberOfFlashes: 0
   components:
   - {fileID: 2320884371343920477}
+  invulnerable: 0
   deathSound: {fileID: 8300000, guid: dd6d9531e2f11434f9add7e7e09cd332, type: 3}
   hurtSound: {fileID: 8300000, guid: 32ff513695816ae4fb9ecd5c1bc67120, type: 3}
 --- !u!114 &2320884371343920477
@@ -208,6 +210,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   fireballSound: {fileID: 8300000, guid: 11f2fb8c24ab53741939b255bda4aab3, type: 3}
+  enemyPatrol: {fileID: 0}
 --- !u!114 &2339461897810876484
 MonoBehaviour:
   m_ObjectHideFlags: 0

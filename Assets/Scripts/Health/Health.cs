@@ -4,8 +4,8 @@ using System.Collections;
 public class Health : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] public float startingHealth;
-    public float currentHealth { get; private set; }
+    [SerializeField] private float startingHealth;
+    public float currentHealth; //{ get; private set; }
     private Animator anim;
     private bool dead;
 
@@ -16,13 +16,13 @@ public class Health : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
-    private bool invulnerable;
+    [SerializeField] private bool invulnerable;
 
     [Header("Death Sound")]
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
 
-    private void Awake()
+    private void Start()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
@@ -31,28 +31,30 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        if (invulnerable) return;
-        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+        if (!invulnerable)
+        {
+            currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
-        if (currentHealth > 0)
-        {
-            anim.SetTrigger("hurt");
-            StartCoroutine(Invunerability());
-            SoundManager.instance.PlaySound(hurtSound);
-        }
-        else
-        {
-            if (!dead)
+            if (currentHealth > 0)
             {
-                // Деактивация всех прикреплённых компонентов
-                foreach (Behaviour component in components)
-                    component.enabled = false;
+                anim.SetTrigger("hurt");
+                StartCoroutine(Invunerability());
+                SoundManager.instance.PlaySound(hurtSound);
+            }
+            else
+            {
+                if (!dead)
+                {
+                    // Деактивация всех прикреплённых компонентов
+                    foreach (Behaviour component in components)
+                        component.enabled = false;
 
-                anim.SetBool("grounded", true);
-                anim.SetTrigger("die");
+                    anim.SetBool("grounded", true);
+                    anim.SetTrigger("die");
 
-                dead = true;
-                SoundManager.instance.PlaySound(deathSound);
+                    dead = true;
+                    SoundManager.instance.PlaySound(deathSound);
+                }
             }
         }
     }
@@ -78,6 +80,16 @@ public class Health : MonoBehaviour
             spriteRend.color = Color.white;
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
         }
+        Physics2D.IgnoreLayerCollision(10, 11, false);
+        invulnerable = false;
+    }
+
+    private IEnumerator Immortality(int duration)
+    {
+        invulnerable = true;
+        Physics2D.IgnoreLayerCollision(10, 11, true);
+        yield return new WaitForSeconds(duration);
+
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
     }
@@ -110,6 +122,11 @@ public class Health : MonoBehaviour
         anim.Play("Idle");
         spriteRend.color = Color.white;
         Physics2D.IgnoreLayerCollision(10, 11, false);
+    }
+
+    public void MakeImmortal(int duration)
+    {
+        StartCoroutine(Immortality(duration));
     }
 
     private void Deactivate()
