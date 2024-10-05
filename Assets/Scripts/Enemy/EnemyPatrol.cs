@@ -13,7 +13,7 @@ public class EnemyPatrol : MonoBehaviour
     [Header("Movement parameters")]
     [SerializeField] private float speed;
     private Vector3 initScale;
-    private bool movingLeft;
+    private bool movingRight;
 
     [Header("Idle Behaviour")]
     [SerializeField] private float idleDuration;
@@ -37,17 +37,17 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (canMove)
         {
-            if (movingLeft)
+            if (movingRight)
             {
-                if (enemy.position.x >= leftEdge.position.x)
-                    MoveInDirection(-1);
+                if (enemy.position.x >= rightEdge.position.x)
+                    MoveInDirection(1);
                 else
                     DirectionChange();
             }
             else
             {
-                if (enemy.position.x <= rightEdge.position.x)
-                    MoveInDirection(1);
+                if (enemy.position.x <= leftEdge.position.x)
+                    MoveInDirection(-1);
                 else
                     DirectionChange();
             }
@@ -64,7 +64,7 @@ public class EnemyPatrol : MonoBehaviour
         idleTimer += Time.deltaTime;
 
         if (idleTimer > idleDuration)
-            movingLeft = !movingLeft;
+            movingRight = !movingRight;
     }
 
     private void MoveInDirection(int _direction)

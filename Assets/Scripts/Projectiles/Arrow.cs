@@ -35,13 +35,14 @@ public class Arrow : MonoBehaviour
             return;
         }
         activeSpeed = 0;
+
+
+        gameObject.SetActive(false);
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Health>().TakeDamage(damage);
 
         }
-
-        gameObject.SetActive(false);
         transform.position = trap.transform.position;
         trap.NextArrow();
     }
