@@ -30,17 +30,19 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        if(!DialogueSystem.isOpen())
         if (!stopCasts&&!dontAttack)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 spells.ActivateStage(0,currentAttackTick);
+                anim.SetTrigger("attack");
                 Attack(0);
-
             }
             if (Input.GetMouseButtonDown(1))
             {
                 spells.ActivateStage(1, currentAttackTick);
+                anim.SetTrigger("Strong Attack");
                 Attack(1);
 
             }
