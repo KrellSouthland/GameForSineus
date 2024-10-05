@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        
         // Активируем все ловушки
         foreach (GameObject trapAndMobs in trapsAndMobs)
         {

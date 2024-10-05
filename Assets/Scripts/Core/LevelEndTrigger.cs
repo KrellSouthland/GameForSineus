@@ -19,7 +19,8 @@ public class LevelEndTrigger : MonoBehaviour
     {
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1; // Следующий уровень
         GameDataManager.SaveLocationData(nextLevelIndex, ""); // Сохраняем данные уровня без контрольной точки
-        SceneManager.LoadScene(nextLevelIndex, LoadSceneMode.Single);
+        LoadingManager.instance.LoadDefineLevel(nextLevelIndex);
+        //SceneManager.LoadScene(nextLevelIndex, LoadSceneMode.Single);
     }
 
 }

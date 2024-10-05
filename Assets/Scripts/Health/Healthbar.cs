@@ -7,12 +7,15 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private Image totalhealthBar;
     [SerializeField] private Image currenthealthBar;
 
+    private int maxHp = 100;
+
     private void Start()
     {
-        totalhealthBar.fillAmount = playerHealth.currentHealth / 10;
+        currenthealthBar.fillAmount = 0; 
+        //totalhealthBar.fillAmount = playerHealth.currentHealth / maxHp;
     }
     private void Update()
     {
-        currenthealthBar.fillAmount = playerHealth.currentHealth / 10;
+        currenthealthBar.fillAmount = Mathf.Lerp(currenthealthBar.fillAmount, playerHealth.currentHealth / maxHp, 0.07f);
     }
 }

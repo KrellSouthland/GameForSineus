@@ -1,15 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject[] fireballs;
-    [SerializeField] private AudioClip fireballSound;
 
+    [SerializeField] private AttackEffect[] attacks;
+    [SerializeField] private float attackTimer;
+    private bool stopCasts;
+    [SerializeField] private bool startAttack;
+    [SerializeField] private bool dontAttack;
+    [SerializeField] private int currentAttackTick;
+    [SerializeField]private List<int> currentAttackList;
     private Animator anim;
     private PlayerMovement playerMovement;
     private float cooldownTimer = Mathf.Infinity;
+    [SerializeField] private float betweenCoolDown;
+
+    [SerializeField] private ShowMagic spells;
+
 
     private void Awake()
     {
@@ -19,29 +30,102 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && cooldownTimer > attackCooldown && playerMovement.canAttack()
-            && Time.timeScale > 0)
-            Attack();
-
-        cooldownTimer += Time.deltaTime;
-    }
-
-    private void Attack()
-    {
-        SoundManager.instance.PlaySound(fireballSound);
-        anim.SetTrigger("attack");
-        cooldownTimer = 0;
-
-        fireballs[FindFireball()].transform.position = firePoint.position;
-        fireballs[FindFireball()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
-    }
-    private int FindFireball()
-    {
-        for (int i = 0; i < fireballs.Length; i++)
+        if (!stopCasts&&!dontAttack)
         {
-            if (!fireballs[i].activeInHierarchy)
-                return i;
+            if (Input.GetMouseButtonDown(0))
+            {
+                spells.ActivateStage(0,currentAttackTick);
+                Attack(0);
+
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                spells.ActivateStage(1, currentAttackTick);
+                Attack(1);
+
+            }
         }
-        return 0;
+        if (dontAttack)
+        {
+            CheckCast();
+        }
     }
+    private void Attack(int Comb)
+    {
+        if (!startAttack)
+        {
+            startAttack = true;
+            StartCoroutine(AttackCount());
+        }
+ 
+        currentAttackList.Add(Comb);
+        dontAttack = true;
+        StartCoroutine(BetweenAttacks());
+        currentAttackTick++;
+
+
+        if (currentAttackTick >= 3)
+        {
+            stopCasts = true;
+            StopAllCoroutines();
+            CheckWhatAttack();
+
+        }
+    }
+
+    private void PurifyAttack()
+    {
+        startAttack = false;
+        currentAttackTick = 0;
+        currentAttackList.Clear();
+        spells.DeactivateStages();
+
+    }
+
+    private IEnumerator AttackCount()
+    {
+        yield return new WaitForSeconds(attackTimer);
+        PurifyAttack();
+
+    }
+    private IEnumerator BetweenAttacks()
+    {
+        yield return new WaitForSeconds(betweenCoolDown);
+        dontAttack = false;
+
+    }
+
+
+    void CheckWhatAttack()
+    {
+        bool basicAttack = true;
+        string combination = null;
+        for (int i = 0; i< currentAttackList.Count; i++)
+        {
+            combination += currentAttackList[i].ToString();
+        }
+        Debug.Log(combination);
+        for (int i = 1;i<attacks.Length;i++)
+        {
+            if (attacks[i].ReturnCombination(combination))
+            {
+                attacks[i].ActivateAttack();
+                basicAttack = false;
+            }
+        }
+        if (basicAttack)
+        {
+            attacks[0].ActivateAttack();
+        }
+        PurifyAttack();
+        stopCasts = false;
+    }
+
+    private void CheckCast()
+    {
+        if (!spells.cantCast)
+            dontAttack = false;
+
+    }
+
 }

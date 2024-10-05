@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
+    public bool turnedLeft {  get; private set; }
 
     private void Awake()
     {
@@ -22,14 +24,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        // ПРОВЕРКА ДИАЛОГА
+        if (!DialogueSystem.isOpen())
+            horizontalInput = Input.GetAxis("Horizontal");
+        else
+            horizontalInput = 0;
 
         // flip player when moving left-right
         if (horizontalInput > 0.01f)
+        {
             transform.localScale = Vector3.one;
+            turnedLeft = false;
+        }
 
         if (horizontalInput < -0.01f)
+        {
             transform.localScale = new Vector3(-1, 1, 1);
+            turnedLeft = true;
+        }
 
         // Set animator parameters
         anim.SetBool("run", horizontalInput != 0);
@@ -47,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
             }
             else
                 body.gravityScale = 7;
-
-            if (Input.GetKey(KeyCode.Space))
+            // ПРОВЕРКА ДИАЛОГА
+            if (Input.GetKey(KeyCode.Space) && !DialogueSystem.isOpen())
                 Jump();
         }
         else
@@ -75,12 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
+  
     private bool isGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
@@ -96,6 +103,17 @@ public class PlayerMovement : MonoBehaviour
     public bool canAttack()
     {
         //return horizontalInput == 0 && isGrounded() && !onWall();
-        return isGrounded() && !onWall();
+        return isGrounded() && !onWall() && !DialogueSystem.isOpen();
     }
+
+    public void ChangeSpeed(int delta)
+    {
+        speed += delta;
+    }
+
+    public void ChangeJump(int delta)
+    {
+        jumpPower += delta;
+    }
+
 }

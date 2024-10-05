@@ -24,7 +24,7 @@ public class RangedEnemy : MonoBehaviour
 
     //References
     private Animator anim;
-    private EnemyPatrol enemyPatrol;
+    [SerializeField]private EnemyPatrol enemyPatrol;
 
     private void Awake()
     {
@@ -88,5 +88,10 @@ public class RangedEnemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
+    }
+
+    public void Root(float delay)
+    {
+        enemyPatrol.Root(delay);
     }
 }
