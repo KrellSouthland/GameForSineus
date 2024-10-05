@@ -49,7 +49,7 @@ public class PlayerRespawn : MonoBehaviour
         if (collision.gameObject.CompareTag("Checkpoint"))
         {
             currentCheckpoint = collision.transform;
-            SoundManager.instance.PlaySound(checkpoint);
+            //SoundManager.instance.PlaySound(checkpoint);
             collision.GetComponent<Collider2D>().enabled = false;
             collision.GetComponent<Animator>().SetTrigger("activate");
 

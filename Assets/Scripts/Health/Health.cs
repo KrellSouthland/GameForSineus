@@ -47,7 +47,7 @@ public class Health : MonoBehaviour
             {
                 anim.SetTrigger("hurt");
                 StartCoroutine(Invunerability());
-                SoundManager.instance.PlaySound(hurtSound);
+//                SoundManager.instance.PlaySound(hurtSound);
             }
             else
             {
@@ -61,7 +61,7 @@ public class Health : MonoBehaviour
                     anim.SetTrigger("die");
 
                     dead = true;
-                    SoundManager.instance.PlaySound(deathSound);
+                    //SoundManager.instance.PlaySound(deathSound);
                 }
             }
         }
@@ -80,7 +80,7 @@ public class Health : MonoBehaviour
     private IEnumerator Invunerability()
     {
         invulnerable = true;
-        Physics2D.IgnoreLayerCollision(10, 11, true);
+        /*Physics2D.IgnoreLayerCollision(10, 11, true);*/
         for (int i = 0; i < numberOfFlashes; i++)
         {
             spriteRend.color = new Color(1, 0, 0, 0.5f);
@@ -88,7 +88,7 @@ public class Health : MonoBehaviour
             spriteRend.color = Color.white;
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
         }
-        Physics2D.IgnoreLayerCollision(10, 11, false);
+        //Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
     }
 
