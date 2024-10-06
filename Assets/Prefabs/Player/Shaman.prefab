@@ -899,7 +899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7828626270535538899, guid: c521a4ce7a105aa48b21bef42c56a685, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.43
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: 7828626270535538899, guid: c521a4ce7a105aa48b21bef42c56a685, type: 3}
       propertyPath: m_LocalPosition.y
@@ -945,6 +945,10 @@ PrefabInstance:
       propertyPath: CastSound
       value: 
       objectReference: {fileID: 8300000, guid: ac10af5b9032b4042b83d1bcfba4d17e, type: 3}
+    - target: {fileID: 9116846809125343134, guid: c521a4ce7a105aa48b21bef42c56a685, type: 3}
+      propertyPath: attackProjectile
+      value: 
+      objectReference: {fileID: 5744787399789426537, guid: 05b12276b392b604085568c21794614f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

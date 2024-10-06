@@ -1,15 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
     [SerializeField] GameObject teleportPoint;
- 
-    void OnTriggerStay2D(Collider2D other)
+    private bool portalActive;
+    private GameObject player;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.O) && other.gameObject.name == "Shaman"){
-            other.transform.position = teleportPoint.transform.position;
+        if (collision.CompareTag("Player"))
+        {
+            portalActive = true;
+            player = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            portalActive = false;
+            player = null;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O) && portalActive)
+        {
+            player.transform.position = teleportPoint.transform.position;
         }
     }
 }
