@@ -38,6 +38,7 @@ public class KutMission : MonoBehaviour
         {
             instance.kutsText.gameObject.SetActive(false);
             Instantiate(instance.dialogTrigger, GameObject.Find("Shaman").transform.position, Quaternion.identity);
+            LevelController.instance.ActivatePortal();
         }
     }
     
