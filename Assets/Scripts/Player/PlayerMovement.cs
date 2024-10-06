@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     public bool turnedLeft {  get; private set; }
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip[] steps;
+    [SerializeField] private AudioClip[] landing;
+
     private void Awake()
     {
         // Grab preferences for rigidbody and animator from object
@@ -116,4 +120,8 @@ public class PlayerMovement : MonoBehaviour
         jumpPower += delta;
     }
 
+    public void SoundStep()
+    {
+        SoundManager.instance.PlaySound(steps[Random.Range(0, steps.Length)]);
+    }
 }

@@ -193,8 +193,9 @@ MonoBehaviour:
   numberOfFlashes: 0
   components: []
   invulnerable: 0
-  deathSound: {fileID: 0}
-  hurtSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: d11fcdc7d1e7c0c438e41699b9a57179, type: 3}
+  hurtSound:
+  - {fileID: 8300000, guid: ec9cadf5396a7f8499bc6c4ab9195152, type: 3}
   healthbar: {fileID: 7538213151167823806}
 --- !u!1 &2549278794514111967
 GameObject:

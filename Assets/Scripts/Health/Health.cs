@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
 
     [Header("Death Sound")]
     [SerializeField] private AudioClip deathSound;
-    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip[] hurtSound;
 
     [Header("Link to bar")]
     [SerializeField] private GameObject healthbar;
@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
             {
                 anim.SetTrigger("hurt");
                 StartCoroutine(Invunerability());
-//                SoundManager.instance.PlaySound(hurtSound);
+                SoundManager.instance.PlaySound(hurtSound[Random.Range(0,hurtSound.Length)]);
             }
             else
             {

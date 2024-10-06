@@ -23,6 +23,8 @@ public class AttackEffect : MonoBehaviour
     [SerializeField] private Health player;
     [SerializeField] private float CDTimer;
     [SerializeField] private bool onCD;
+
+    [SerializeField] private AudioClip CastSound;
     
     public bool ReturnCombination(string combinatio)
     {
@@ -37,6 +39,7 @@ public class AttackEffect : MonoBehaviour
 
     public void ActivateAttack()
     {
+        SoundManager.instance.PlaySound(CastSound);
         if (!onCD)
         {
             if (sleeper)

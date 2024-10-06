@@ -193,6 +193,16 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
+  steps:
+  - {fileID: 8300000, guid: bc3199712bc97904c9e7a75ec994cd20, type: 3}
+  - {fileID: 8300000, guid: f9d5e7eef8e1f584f99910c82d22ab6d, type: 3}
+  - {fileID: 8300000, guid: 4905c4d7a75a74047abcc90133e98660, type: 3}
+  - {fileID: 8300000, guid: 687509d3302944b48852ba34a4d5d381, type: 3}
+  landing:
+  - {fileID: 8300000, guid: 9dd994e9d93922449a627413325582c5, type: 3}
+  - {fileID: 8300000, guid: 07230aabb4234fd4c92f940ef9715a66, type: 3}
+  - {fileID: 8300000, guid: 950e4ee5781b7644aa46d15794f7febe, type: 3}
+  - {fileID: 8300000, guid: b27796a6545546143ad839c5fc7baa7e, type: 3}
 --- !u!114 &5324857420483104576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +231,10 @@ MonoBehaviour:
   currentAttackList: 
   betweenCoolDown: 0.5
   spells: {fileID: 3931416624099220817}
+  silentSound: {fileID: 8300000, guid: 164df2458fdc8324ab297684e3ad7dcc, type: 3}
+  StrongSound:
+  - {fileID: 8300000, guid: f7d88684f3e77cc4f88b769b084c466d, type: 3}
+  - {fileID: 8300000, guid: fd6b00fa75c92f04297eed7a55be10d7, type: 3}
 --- !u!95 &4460017984163074997
 Animator:
   serializedVersion: 5
@@ -264,7 +278,10 @@ MonoBehaviour:
   - {fileID: 1290832994650778934}
   invulnerable: 0
   deathSound: {fileID: 8300000, guid: c1068cd8271d76a43bda63c2bb8be69c, type: 3}
-  hurtSound: {fileID: 8300000, guid: 32ff513695816ae4fb9ecd5c1bc67120, type: 3}
+  hurtSound:
+  - {fileID: 8300000, guid: 9ee1de5f532eda04ba4d2ec028d48ffd, type: 3}
+  - {fileID: 8300000, guid: 6350e99b1b7a70f4aac58d02be9e7e5e, type: 3}
+  - {fileID: 8300000, guid: 8e73c3989adf5724298ace35cd6f04da, type: 3}
   healthbar: {fileID: 0}
 --- !u!114 &7685147288356597543
 MonoBehaviour:
@@ -434,6 +451,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8750279421006572754, guid: 30c3972a6f510e24b9e0bde3e2967625, type: 3}
+      propertyPath: CastSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 44b21bc84b9bccb4baf86d28b8dc7ff9, type: 3}
+    - target: {fileID: 8750279421006572754, guid: 30c3972a6f510e24b9e0bde3e2967625, type: 3}
       propertyPath: jumpTimer
       value: 10
       objectReference: {fileID: 0}
@@ -522,6 +543,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1290832994650778934}
+    - target: {fileID: 1319382055454743917, guid: e9134ac443ca89c4d975daefae64156d, type: 3}
+      propertyPath: CastSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 38b9293ea0d2d3b4ebce5d3cbf58c5bb, type: 3}
     - target: {fileID: 3380802103649476130, guid: e9134ac443ca89c4d975daefae64156d, type: 3}
       propertyPath: m_Name
       value: HealGun
@@ -765,6 +790,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8750279421006572754, guid: 30c3972a6f510e24b9e0bde3e2967625, type: 3}
+      propertyPath: CastSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f7d3bb8803230a49996105471462c6c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -912,6 +941,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1290832994650778934}
+    - target: {fileID: 9116846809125343134, guid: c521a4ce7a105aa48b21bef42c56a685, type: 3}
+      propertyPath: CastSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ac10af5b9032b4042b83d1bcfba4d17e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1140,6 +1173,10 @@ PrefabInstance:
       propertyPath: speeder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8750279421006572754, guid: 30c3972a6f510e24b9e0bde3e2967625, type: 3}
+      propertyPath: CastSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 44b21bc84b9bccb4baf86d28b8dc7ff9, type: 3}
     - target: {fileID: 8750279421006572754, guid: 30c3972a6f510e24b9e0bde3e2967625, type: 3}
       propertyPath: fastTimer
       value: 10

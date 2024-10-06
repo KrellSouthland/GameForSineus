@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 714587055734388415}
   - component: {fileID: 4758396162418159092}
   - component: {fileID: 2160495788836258935}
+  - component: {fileID: 1958962788439247677}
   m_Layer: 0
   m_Name: DemonBody
   m_TagString: Untagged
@@ -340,6 +341,28 @@ MonoBehaviour:
     m_Bits: 1024
   fireballSound: {fileID: 0}
   enemyPatrol: {fileID: 3318332350489074845}
+--- !u!114 &1958962788439247677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248571935365002288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e26f534ea637349a0bc6f44b578ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 30
+  currentHealth: 0
+  iFramesDuration: 0
+  numberOfFlashes: 0
+  components: []
+  invulnerable: 0
+  deathSound: {fileID: 8300000, guid: d11fcdc7d1e7c0c438e41699b9a57179, type: 3}
+  hurtSound:
+  - {fileID: 8300000, guid: ec9cadf5396a7f8499bc6c4ab9195152, type: 3}
+  healthbar: {fileID: 0}
 --- !u!1 &8323404613108530454
 GameObject:
   m_ObjectHideFlags: 0
