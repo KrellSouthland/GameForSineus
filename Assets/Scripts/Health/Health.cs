@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
                     anim.SetTrigger("die");
 
                     dead = true;
-                    //SoundManager.instance.PlaySound(deathSound);
+                    SoundManager.instance.PlaySound(deathSound);
                 }
             }
         }
