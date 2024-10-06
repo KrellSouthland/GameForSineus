@@ -20,8 +20,8 @@ TagManager:
   - Wall
   - Player
   - Enemy
-  - 
-  - 
+  - Triggers
+  - Fading
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2649148703
+    locked: 0
+  - name: Fading
+    uniqueID: 174241223
     locked: 0
