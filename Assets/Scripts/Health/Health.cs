@@ -19,7 +19,7 @@ public class Health : MonoBehaviour
     [SerializeField] private bool invulnerable;
 
     [Header("Death Sound")]
-    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip[] deathSound;
     [SerializeField] private AudioClip[] hurtSound;
 
     [Header("Link to bar")]
@@ -29,6 +29,16 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        if (gameObject.CompareTag("Player"))
+        {
+            hurtSound = SoundHolder.Instance.PlayerHurt;
+            deathSound = SoundHolder.Instance.PlayerDie;
+        }
+        else
+        {
+            hurtSound = SoundHolder.Instance.EnemyHurt;
+            deathSound = SoundHolder.Instance.EnemyDie;
+        }
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
@@ -49,7 +59,7 @@ public class Health : MonoBehaviour
             {
                 anim.SetTrigger("hurt");
                 StartCoroutine(Invunerability());
-                SoundManager.instance.PlaySound(hurtSound[Random.Range(0,hurtSound.Length)]);
+                SoundHolder.Instance.PlaySound(hurtSound);
             }
             else
             {
@@ -63,7 +73,7 @@ public class Health : MonoBehaviour
                     anim.SetTrigger("die");
 
                     dead = true;
-                    SoundManager.instance.PlaySound(deathSound);
+                    SoundHolder.Instance.PlaySound(deathSound);
                 }
             }
         }

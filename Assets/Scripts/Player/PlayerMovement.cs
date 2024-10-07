@@ -122,6 +122,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SoundStep()
     {
-        SoundManager.instance.PlaySound(steps[Random.Range(0, steps.Length)]);
+        SoundHolder.Instance.PlaySound(SoundHolder.Instance.PlayerMove);
     }
 }

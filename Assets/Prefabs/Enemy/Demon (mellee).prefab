@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7957380359524394950}
   m_Layer: 0
   m_Name: DemonBody
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: d11fcdc7d1e7c0c438e41699b9a57179, type: 3}
   hurtSound:
   - {fileID: 8300000, guid: ec9cadf5396a7f8499bc6c4ab9195152, type: 3}
-  healthbar: {fileID: 7538213151167823806}
+  healthbar: {fileID: 8380390384908468867}
 --- !u!1 &2549278794514111967
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,9 +408,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3453269473752263003, guid: 55d702785950c944fa4081559e956bb2, type: 3}
   m_PrefabInstance: {fileID: 2483264166234342228}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7538213151167823806 stripped
+--- !u!1 &8380390384908468867 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5398495928629066986, guid: 55d702785950c944fa4081559e956bb2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6213686817997930967, guid: 55d702785950c944fa4081559e956bb2, type: 3}
   m_PrefabInstance: {fileID: 2483264166234342228}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5377231737463662605

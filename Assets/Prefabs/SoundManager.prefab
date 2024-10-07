@@ -42,7 +42,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 06bbee867c4cda34c9a65ca6a3f86b10, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9eb5387fd7a82504888e410408be891f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -160,6 +160,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8571706295821555816}
+  - {fileID: 4740925482220839576}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &7150565072648843554
@@ -272,3 +273,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSource: {fileID: 0}
   musicSource: {fileID: 0}
+--- !u!1 &6564271936083983490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4740925482220839576}
+  - component: {fileID: 5018767781617394719}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4740925482220839576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564271936083983490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6775026699262647124}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5018767781617394719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564271936083983490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e1314208208c2409f3507bc5fc1ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealSpell:
+  - {fileID: 8300000, guid: 38b9293ea0d2d3b4ebce5d3cbf58c5bb, type: 3}
+  SpeedSpell:
+  - {fileID: 8300000, guid: 44b21bc84b9bccb4baf86d28b8dc7ff9, type: 3}
+  JumpSpell:
+  - {fileID: 8300000, guid: 44b21bc84b9bccb4baf86d28b8dc7ff9, type: 3}
+  ShieldSpell:
+  - {fileID: 8300000, guid: 1ef8743c7bb7ce54ab2adcdcd6a72e23, type: 3}
+  FireSpell:
+  - {fileID: 8300000, guid: ce900741c7bb01c438c18019a7bb0d8f, type: 3}
+  WindSpell:
+  - {fileID: 8300000, guid: ac10af5b9032b4042b83d1bcfba4d17e, type: 3}
+  EarthQuakeSpell: []
+  PlayerMove:
+  - {fileID: 8300000, guid: bc3199712bc97904c9e7a75ec994cd20, type: 3}
+  - {fileID: 8300000, guid: f9d5e7eef8e1f584f99910c82d22ab6d, type: 3}
+  - {fileID: 8300000, guid: 4905c4d7a75a74047abcc90133e98660, type: 3}
+  - {fileID: 8300000, guid: 687509d3302944b48852ba34a4d5d381, type: 3}
+  PlayerLand: []
+  PlayerHurt:
+  - {fileID: 8300000, guid: 9ee1de5f532eda04ba4d2ec028d48ffd, type: 3}
+  - {fileID: 8300000, guid: 6350e99b1b7a70f4aac58d02be9e7e5e, type: 3}
+  - {fileID: 8300000, guid: 8e73c3989adf5724298ace35cd6f04da, type: 3}
+  PlayerDie:
+  - {fileID: 8300000, guid: c1068cd8271d76a43bda63c2bb8be69c, type: 3}
+  - {fileID: 8300000, guid: df82f92d65e3ece4b91f4b9dea98386c, type: 3}
+  - {fileID: 8300000, guid: c04dd9a32e0718e4ea337c199c3d7c90, type: 3}
+  PickUpSouls:
+  - {fileID: 8300000, guid: fb702a907fa3e844fbcbe85d3810a73d, type: 3}
+  EnemyHurt:
+  - {fileID: 8300000, guid: ec9cadf5396a7f8499bc6c4ab9195152, type: 3}
+  EnemyDie:
+  - {fileID: 8300000, guid: d11fcdc7d1e7c0c438e41699b9a57179, type: 3}
+  EnemyRangedAttack:
+  - {fileID: 8300000, guid: 9f7d3bb8803230a49996105471462c6c, type: 3}
+  SilentDrum:
+  - {fileID: 8300000, guid: 164df2458fdc8324ab297684e3ad7dcc, type: 3}
+  StronfDrum:
+  - {fileID: 8300000, guid: fd6b00fa75c92f04297eed7a55be10d7, type: 3}
+  - {fileID: 8300000, guid: f7d88684f3e77cc4f88b769b084c466d, type: 3}

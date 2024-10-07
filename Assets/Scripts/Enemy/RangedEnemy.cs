@@ -24,12 +24,10 @@ public class RangedEnemy : MonoBehaviour
 
     //References
     private Animator anim;
-    [SerializeField]private EnemyPatrol enemyPatrol;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
     private void Update()
@@ -45,19 +43,16 @@ public class RangedEnemy : MonoBehaviour
                 anim.SetTrigger("rangedAttack");
             }
 
-            if (enemyPatrol != null)
-                enemyPatrol.canMove = false;
         }
         else
         {
-            if (enemyPatrol != null)
-                enemyPatrol.canMove = true;
+
         }
     }
 
     private void RangedAttack()
     {
-        //SoundManager.instance.PlaySound(fireballSound);
+        SoundHolder.Instance.PlaySound(SoundHolder.Instance.EnemyRangedAttack);
         cooldownTimer = 0;
         fireballs[FindFireball()].transform.position = firepoint.position;
 
@@ -94,6 +89,6 @@ public class RangedEnemy : MonoBehaviour
 
     public void Root(float delay)
     {
-        enemyPatrol.Root(delay);
+
     }
 }

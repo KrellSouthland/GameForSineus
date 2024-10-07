@@ -42,16 +42,16 @@ public class PlayerAttack : MonoBehaviour
                 spells.ActivateStage(0,currentAttackTick);
                 anim.SetTrigger("attack");
                 Attack(0);
-                    SoundManager.instance.PlaySound(silentSound);
+                SoundHolder.Instance.PlaySound(SoundHolder.Instance.SilentDrum);
             }
             if (Input.GetMouseButtonDown(1))
             {
                 spells.ActivateStage(1, currentAttackTick);
                 anim.SetTrigger("Strong Attack");
                 Attack(1);
-                    SoundManager.instance.PlaySound(StrongSound[Random.Range(0,StrongSound.Length)]);
+                SoundHolder.Instance.PlaySound(SoundHolder.Instance.StronfDrum);
 
-            }
+                }
         }
         if (dontAttack)
         {

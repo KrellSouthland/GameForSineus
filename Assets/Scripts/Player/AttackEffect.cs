@@ -24,7 +24,7 @@ public class AttackEffect : MonoBehaviour
     [SerializeField] private float CDTimer;
     [SerializeField] private bool onCD;
 
-    [SerializeField] private AudioClip CastSound;
+    [SerializeField] private AudioClip[] CastSound;
     
     public bool ReturnCombination(string combinatio)
     {
@@ -39,7 +39,7 @@ public class AttackEffect : MonoBehaviour
 
     public void ActivateAttack()
     {
-        SoundManager.instance.PlaySound(CastSound);
+        //SoundHolder.Instance.PlaySound(CastSound);
         if (!onCD)
         {
             if (sleeper)
@@ -49,14 +49,13 @@ public class AttackEffect : MonoBehaviour
             }
             else if (heal)
             {
-                Debug.Log("HeakStarts");
+                SoundHolder.Instance.PlaySound(SoundHolder.Instance.HealSpell);
                 player.AddHealth(ammountOfHeal);
-                Debug.Log($"{ammountOfHeal}");
             }
             else if (immortal)
             {
+                SoundHolder.Instance.PlaySound(SoundHolder.Instance.ShieldSpell);
                 player.MakeImmortal(timerimmortal);
-                return;
             }
             else if (quaker)
             {
@@ -67,15 +66,18 @@ public class AttackEffect : MonoBehaviour
             }
             else if(speeder)
             {
+                SoundHolder.Instance.PlaySound(SoundHolder.Instance.SpeedSpell);
                 StartCoroutine(SpeedEffect());
 
             }
             else if (feather)
             {
+                SoundHolder.Instance.PlaySound(SoundHolder.Instance.JumpSpell);
                 StartCoroutine(JumpEffect());
             }
             else
             {
+                SoundHolder.Instance.PlaySound(SoundHolder.Instance.FireSpell);
                 Projectile ammunition = Instantiate(attackProjectile, transform.position, transform.rotation);
 
                 ammunition.Damage = damage;
