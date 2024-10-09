@@ -25,6 +25,8 @@ public class AttackEffect : MonoBehaviour
     [SerializeField] private bool onCD;
 
     [SerializeField] private AudioClip[] CastSound;
+
+    [SerializeField] private GameObject castParticles;
     
     public bool ReturnCombination(string combinatio)
     {
@@ -50,11 +52,13 @@ public class AttackEffect : MonoBehaviour
             else if (heal)
             {
                 SoundHolder.Instance.PlaySound(SoundHolder.Instance.HealSpell);
+                StartCoroutine(Shield());
                 player.AddHealth(ammountOfHeal);
             }
             else if (immortal)
             {
                 SoundHolder.Instance.PlaySound(SoundHolder.Instance.ShieldSpell);
+                StartCoroutine(Shield());
                 player.MakeImmortal(timerimmortal);
             }
             else if (quaker)
@@ -110,8 +114,10 @@ public class AttackEffect : MonoBehaviour
     private IEnumerator SpeedEffect()
     {
         player.GetComponent<PlayerMovement>().ChangeSpeed(fastEffect);
+        castParticles.SetActive(true);
         yield return new WaitForSeconds(fastTimer);
         player.GetComponent<PlayerMovement>().ChangeSpeed(-fastEffect);
+        castParticles.SetActive(false);
     }
 
     private IEnumerator JumpEffect()
@@ -119,6 +125,13 @@ public class AttackEffect : MonoBehaviour
         player.GetComponent<PlayerMovement>().ChangeJump(jumpEffect);
         yield return new WaitForSeconds(jumpTimer);
         player.GetComponent<PlayerMovement>().ChangeJump(-jumpEffect);
+    }
+
+    private IEnumerator Shield()
+    {
+        castParticles.SetActive(true);
+        yield return new WaitForSeconds(timerimmortal);
+        castParticles.SetActive(false);
     }
 
 }

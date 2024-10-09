@@ -164,7 +164,7 @@ Animator:
   m_GameObject: {fileID: 1253529809957986551}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e4566a9a902779949ab109767dbe1ca5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4c8c688b95b254745ab654b5c4ad384f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -193,7 +193,10 @@ MonoBehaviour:
   numberOfFlashes: 0
   components: []
   invulnerable: 0
-  deathSound: {fileID: 8300000, guid: d11fcdc7d1e7c0c438e41699b9a57179, type: 3}
+  deathSound:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hurtSound:
   - {fileID: 8300000, guid: ec9cadf5396a7f8499bc6c4ab9195152, type: 3}
   healthbar: {fileID: 8380390384908468867}
@@ -270,7 +273,7 @@ GameObject:
   - component: {fileID: 7322134564193415435}
   m_Layer: 0
   m_Name: Demon (mellee)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
